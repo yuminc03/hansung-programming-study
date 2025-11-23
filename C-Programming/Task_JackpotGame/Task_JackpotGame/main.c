@@ -5,25 +5,21 @@
 
 int main(void)
 {
+	const int COIN = 1; // 게임 한 판에 사용할 코인의 수
+	const int JACKPOT_REWARD = 80; // 잭팟 상품
+	const int TRIPLE_REWARD = 60; // 트리플 상품
+
 	srand(time(NULL));
 	int attemptCount = 0; // 게임 시도 횟수
 	int jackpotWins = 0; // 7-7-7 잭팟 횟수 (1이 되었을 때 게임 종료)
 	int tripleWins = 0; // 7-7-7 잭팟 횟수를 제외한 트리플 횟수(예시: 3-3-3)
-	int pairWins = 0; // 2개만 일치하는 횟수 (예시: 2-1-2)
-
-	int jackpotReward = 200; // 잭팟 상품
-	int tripleReward = 100; // 트리플 상품
-
 	int coins = 100; // 기본으로 갖고 시작할 코인의 수
-	const int COIN = 1; // 게임 한 판에 사용할 코인의 수
-
-	char playAgain = 'y'; // 게임을 계속할지 묻는 변수 (y: 예, n: 아니오)
-
+	
 	printf("=========================================================\n");
 	printf("잭팟 게임을 시작합니다! 7-7-7이 나오면 게임은 종료됩니다.\n");
 	printf("게임 한 판에 사용할 코인은 %d개 입니다.\n", COIN);
-	printf("게임을 종료하려면 'q'를 눌러서 종료합니다.\n");
 	printf("=========================================================\n");
+	printf("\n");
 
 	do {
 		coins -= COIN; // 코인 감소
@@ -34,23 +30,25 @@ int main(void)
 		int num1 = (rand() % 7) + 1;
 		int num2 = (rand() % 7) + 1;
 		int num3 = (rand() % 7) + 1;
-		printf("===%d회 게임 결과: [%d] [%d] [%d]===\n", attemptCount, num1, num2, num3);
+		printf("======%d회 게임 결과: [%d] [%d] [%d]======\n", attemptCount, num1, num2, num3);
 
 		if (num1 == 7 && num2 == 7 && num3 == 7)
 		{
 			// 잭팟 (7-7-7)
+			printf("*************************************\n");
 			printf("<<-------%d-%d-%d 잭팟 성공!------->>\n", num1, num2, num3);
 			printf("<<-------게임 시도 횟수: %d-------->>\n", attemptCount);
-			coins += jackpotReward;
+			coins += JACKPOT_REWARD;
 			jackpotWins += 1;
-			printf("<<------- + %d 코인!-------->>\n", jackpotReward);
+			printf("<<------- + %d 코인!-------->>\n", JACKPOT_REWARD);
 		}
 		else if (num1 == num2 && num2 == num3) {
 			// 잭팟이 아닌 트리플 (3-3-3, 5-5-5 등..)
+			printf("**********************************\n");
 			printf("<<-------%d-%d-%d 트리플!------->>\n", num1, num2, num3);
-			coins += tripleReward;
+			coins += TRIPLE_REWARD;
 			tripleWins += 1;
-			printf("<<------- + %d 코인!-------->>\n", tripleWins);
+			printf("<<------- + %d 코인!-------->>\n", TRIPLE_REWARD);
 		}
 		else {
 			printf("다음 기회에..\n");
@@ -60,24 +58,16 @@ int main(void)
 			printf("<<---코인이 부족해서 게임을 계속할 수 없습니다.. --->>\n");
 			break;
 		}
+	} while (coins > 0);
 
-		printf("게임을 계속하시겠습니까? (y: 예, q: 아니오(종료)): ");
-		scanf("%c", &playAgain);
-
-		// 혹시 사용자가 y나 q가 아닌 다른 값을 입력하면 그냥 종료
-		if (playAgain != 'y' && playAgain != 'q' && playAgain != 'Q') {
-			break;
-		}
-
-	} while (playAgain != 'q' && playAgain != 'Q');
-
-	printf("=========================================================");
-	printf("** 잭팟 게임 결과가 나왔습니다! **\n");
-	printf("---------------------------------------------------------");
+	printf("\n\n");
+	printf("=========================================================\n");
+	printf("         ** 잭팟 게임 결과가 나왔습니다! **\n");
+	printf("---------------------------------------------------------\n");
 	printf("잭팟이 나올 때까지 총 %d번 시도했습니다.\n\n", attemptCount);
-	printf("----------------------당첨된 기록------------------------");
+	printf("----------------------당첨된 기록------------------------\n");
 	printf("잭팟이 아닌 트리플 (ex: 1-1-1): %d번\n", tripleWins);
-	printf("=========================================================");
+	printf("=========================================================\n");
 	
 	return 0;
 }
