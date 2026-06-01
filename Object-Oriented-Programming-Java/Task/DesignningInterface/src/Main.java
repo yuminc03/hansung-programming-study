@@ -20,11 +20,13 @@ class Warrior implements PlayableCharacter, Movable, Attackable {
         System.out.println(name + "(전사)이(가) 무거운 갑옷을 입고 묵직하게 걸어갑니다.");
     }
 
-    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 전사 고유 공격 멘트 출력 (인자 없음)
+    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 전사 고유 공격 멘트 출력 및 자신의 체력 소모
     @Override
     public void attack() {
-        // 콘솔에 전사의 물리 일반 공격 메시지를 출력
-        System.out.println(name + "(전사)이(가) 검을 넓게 휘두르며 강력하게 베어냅니다! (기본 피해량: 15)");
+        // 공격 행위로 인해 자신의 체력을 10 소모하며, 0 미만으로 내려가지 않도록 최댓값 방어 처리
+        this.hp = Math.max(0, this.hp - 10);
+        // 콘솔에 공격 메시지와 자신의 소모된 체력 결과를 출력
+        System.out.println(name + "(전사)이(가) 검을 휘둘러 공격합니다! (자신의 HP 10 소모, 현재 HP: " + hp + ")");
     }
 
     // PlayableCharacter 인터페이스의 useSkill 메서드를 오버라이딩하여 전사 고유 스킬 동작을 출력
@@ -47,7 +49,7 @@ class Warrior implements PlayableCharacter, Movable, Attackable {
         // Math.max를 활용하여 데미지를 뺀 체력이 최소 0 아래로 떨어지지 않도록 설계
         this.hp = Math.max(0, this.hp - damage);
         // 콘솔에 피해량과 감소된 현재 체력을 실시간으로 출력
-        System.out.println(name + "이(가) " + damage + "의 피해를 입었습니다. (현재 체력: " + hp + ")");
+        System.out.println(name + "이(가) 외부로부터 " + damage + "의 피해를 입었습니다. (현재 체력: " + hp + ")");
     }
 
     // 캐릭터의 이름을 반환하는 Getter 메서드 오버라이딩
@@ -80,11 +82,13 @@ class Wizard implements PlayableCharacter, Movable, Attackable {
         System.out.println(name + "(마법사)이(가) 부드럽게 순간이동하며 신속하게 이동합니다.");
     }
 
-    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 마법사 공격 멘트 출력 (인자 없음)
+    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 마법사 공격 멘트 출력 및 자신의 체력 소모
     @Override
     public void attack() {
-        // 파이어볼 마법으로 일반 공격을 한다는 로그 출력
-        System.out.println(name + "(마법사)이(가) 전방을 향해 불타오르는 파이어볼 마법을 발사합니다! (기본 피해량: 25)");
+        // 마법 캐스팅으로 인해 자신의 체력을 15 소모하며, 0 미만으로 떨어지지 않도록 방어 처리
+        this.hp = Math.max(0, this.hp - 15);
+        // 콘솔에 마법 발사 메시지와 자신의 소모된 체력 결과를 출력
+        System.out.println(name + "(마법사)이(가) 강력한 파이어볼을 발사합니다! (자신의 HP 15 소모, 현재 HP: " + hp + ")");
     }
 
     // PlayableCharacter 인터페이스의 useSkill 메서드를 오버라이딩하여 고유 마법 시전 출력
@@ -104,10 +108,10 @@ class Wizard implements PlayableCharacter, Movable, Attackable {
     // PlayableCharacter 인터페이스의 takeDamage 메서드를 오버라이딩하여 피해 계산 및 생존 상태 실시간 기록
     @Override
     public void takeDamage(int damage) {
-        // 0 미만의 음수 체력이 발생하지 않도록 체력 조절 로직 적용
+        // 피해량 만큼 체력 감산 적용
         this.hp = Math.max(0, this.hp - damage);
         // 피해 내역 및 남은 체력 수치를 콘솔에 출력
-        System.out.println(name + "이(가) " + damage + "의 피해를 입었습니다. (현재 체력: " + hp + ")");
+        System.out.println(name + "이(가) 외부로부터 " + damage + "의 피해를 입었습니다. (현재 체력: " + hp + ")");
     }
 
     // 마법사의 이름을 조회하는 메서드 오버라이딩
@@ -140,11 +144,13 @@ class Archer implements PlayableCharacter, Movable, Attackable {
         System.out.println(name + "(궁수)이(가) 민첩한 발걸음으로 장애물을 뛰어넘으며 질주합니다.");
     }
 
-    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 궁수 공격 멘트 출력 (인자 없음)
+    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 궁수 공격 멘트 출력 및 자신의 체력 소모
     @Override
     public void attack() {
-        // 정밀 활 쏘기 공격 로그 출력
-        System.out.println(name + "(궁수)이(가) 활시위를 강하게 당겨 날카로운 바람의 화살을 날립니다! (기본 피해량: 18)");
+        // 화살 사격으로 인해 자신의 체력을 8 소모하며, 0 미만으로 내려가지 않도록 차단 처리
+        this.hp = Math.max(0, this.hp - 8);
+        // 콘솔에 사격 메시지와 자신의 소모된 체력 결과를 출력
+        System.out.println(name + "(궁수)이(가) 바람의 화살을 날립니다! (자신의 HP 8 소모, 현재 HP: " + hp + ")");
     }
 
     // PlayableCharacter 인터페이스의 useSkill 메서드를 오버라이딩하여 멀티플 샷 기술 구현
@@ -164,10 +170,10 @@ class Archer implements PlayableCharacter, Movable, Attackable {
     // PlayableCharacter 인터페이스의 takeDamage 메서드를 오버라이딩하여 데미지 상쇄 및 기록
     @Override
     public void takeDamage(int damage) {
-        // 0 체력 보호 장치를 갖추어 궁수의 체력 감산 적용
+        // 피해량 만큼 체력 감산 적용
         this.hp = Math.max(0, this.hp - damage);
         // 피해 기록 및 체력 변동 이력 콘솔 출력
-        System.out.println(name + "이(가) " + damage + "의 피해를 입었습니다. (현재 체력: " + hp + ")");
+        System.out.println(name + "이(가) 외부로부터 " + damage + "의 피해를 입었습니다. (현재 체력: " + hp + ")");
     }
 
     // 궁수 객체의 이름을 추출하는 getter 메서드
@@ -216,34 +222,31 @@ public class Main {
         // 궁수 캐릭터의 시그니처 멀티플 샷 스킬 호출
         archer.useSkill();
 
-        // 다형성을 통한 실제 전투 및 피해 연산 시뮬레이션 헤더 출력 (매개변수 제거 및 직접 피해 제어)
-        System.out.println("\n=== 전투 상호작용 시뮬레이션 ===");
+        // 다형성을 통한 실제 전투 및 피해 연산 시뮬레이션 헤더 출력 (자체 에너지를 소모하는 공격)
+        System.out.println("\n=== 공격 시 체력 소모 시뮬레이션 ===");
         
-        // 전사가 마법사를 공격하는 상황 시뮬레이션
-        System.out.println("[전사 -> 마법사 공격]");
-        // warrior를 Attackable 타입으로 다운캐스팅하여 공격 모션 가동
+        // 전사가 공격하는 상황 시뮬레이션
+        System.out.println("[전사 공격 행동]");
+        // warrior를 Attackable 타입으로 다운캐스팅하여 공격 실행 (자신의 hp 소모)
         ((Attackable)warrior).attack();
-        // 마법사 객체의 takeDamage를 직접 실행하여 물리 피해 15를 가함
-        wizard.takeDamage(15);
-        // 피해 반영 결과 정보 출력
-        wizard.showStatus();
 
-        // 마법사가 궁수를 공격하는 상황 시뮬레이션
-        System.out.println("\n[마법사 -> 궁수 공격]");
-        // wizard를 Attackable 타입으로 다운캐스팅하여 마법 발사
+        // 마법사가 공격하는 상황 시뮬레이션
+        System.out.println("\n[마법사 공격 행동]");
+        // wizard를 Attackable 타입으로 다운캐스팅하여 마법 발사 (자신의 hp 소모)
         ((Attackable)wizard).attack();
-        // 궁수 객체의 takeDamage를 직접 실행하여 마법 피해 25를 가함
-        archer.takeDamage(25);
-        // 피해 반영 결과 정보 출력
-        archer.showStatus();
 
-        // 궁수가 전사를 공격하는 상황 시뮬레이션
-        System.out.println("\n[궁수 -> 전사 공격]");
-        // archer를 Attackable 타입으로 다운캐스팅하여 화살 발사
+        // 궁수가 공격하는 상황 시뮬레이션
+        System.out.println("\n[궁수 공격 행동]");
+        // archer를 Attackable 타입으로 다운캐스팅하여 활 사격 (자신의 hp 소모)
         ((Attackable)archer).attack();
-        // 전사 객체의 takeDamage를 직접 실행하여 원거리 화살 피해 18을 가함
-        warrior.takeDamage(18);
-        // 피해 반영 결과 정보 출력
+
+        // 최종 상태를 검증하기 위한 콘솔 구분선 출력
+        System.out.println("\n=== 최종 상태 ===");
+        // 전사의 최종 상태 정보 출력
         warrior.showStatus();
+        // 마법사의 최종 상태 정보 출력
+        wizard.showStatus();
+        // 궁수의 최종 상태 정보 출력
+        archer.showStatus();
     }
 }
