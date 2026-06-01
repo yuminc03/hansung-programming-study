@@ -1,5 +1,4 @@
 // 게임 캐릭터의 공통적인 행동 명세(계약)를 정의하는 플레이 가능한 캐릭터 인터페이스입니다.
-package src;
 
 public interface PlayableCharacter {
 
