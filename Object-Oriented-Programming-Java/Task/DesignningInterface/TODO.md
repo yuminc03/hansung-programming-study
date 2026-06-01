@@ -1,9 +1,9 @@
 # 프로젝트 구현 예정 작업 목록 (TODO List)
 
-- [ ] Warrior 클래스 구현하기 (PlayableCharacter, Movable, Attackable 인터페이스를 다중 구현(implements)하여 전사 캐릭터의 행동을 오버라이딩합니다.)
-- [ ] Wizard 클래스 구현하기 (PlayableCharacter, Movable, Attackable 인터페이스를 다중 구현(implements)하여 마법사 캐릭터의 행동을 오버라이딩합니다.)
-- [ ] Archer 클래스 구현하기 (PlayableCharacter, Movable, Attackable 인터페이스를 다중 구현(implements)하여 궁수 캐릭터의 행동을 오버라이딩합니다.)
-- [ ] Main 클래스 연동 테스트 (각 캐릭터 인스턴스를 생성하고 attack() 및 move() 동작이 올바르게 다형성으로 실행되는지 확인합니다.)
+- [x] Warrior 클래스 구현하기 (PlayableCharacter, Movable, Attackable 인터페이스를 다중 구현(implements)하여 전사 캐릭터의 행동을 오버라이딩합니다.)
+- [x] Wizard 클래스 구현하기 (PlayableCharacter, Movable, Attackable 인터페이스를 다중 구현(implements)하여 마법사 캐릭터의 행동을 오버라이딩합니다.)
+- [x] Archer 클래스 구현하기 (PlayableCharacter, Movable, Attackable 인터페이스를 다중 구현(implements)하여 궁수 캐릭터의 행동을 오버라이딩합니다.)
+- [x] Main 클래스 연동 테스트 (각 캐릭터 인스턴스를 생성하고 attack() 및 move() 동작이 올바르게 다형성으로 실행되는지 확인합니다.)
 - [ ] 신규 직업 추가 고려 (도적(Thief), 성직자(Priest) 등 새로운 직업군의 확장성을 고려하여 설계가 유지되는지 검증합니다.)
 
 ## 객체지향 설계를 위한 인터페이스 리팩토링 검토 사항
