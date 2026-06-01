@@ -20,13 +20,11 @@ class Warrior implements PlayableCharacter, Movable, Attackable {
         System.out.println(name + "(전사)이(가) 무거운 갑옷을 입고 묵직하게 걸어갑니다.");
     }
 
-    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 상대방 캐릭터를 직접 공격하는 다형성 메서드
+    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 전사 고유 공격 멘트 출력 (인자 없음)
     @Override
-    public void attack(PlayableCharacter target) {
-        // 콘솔에 공격 메시지와 대상, 그리고 입힐 물리 데미지를 출력
-        System.out.println(name + "(전사)이(가) " + target.getName() + "을(를) 검으로 강하게 벱니다! (데미지: 15)");
-        // 공격 대상의 takeDamage 메서드를 호출하여 실질적으로 상대방에게 15의 피해를 입힘
-        target.takeDamage(15);
+    public void attack() {
+        // 콘솔에 전사의 물리 일반 공격 메시지를 출력
+        System.out.println(name + "(전사)이(가) 검을 넓게 휘두르며 강력하게 베어냅니다! (기본 피해량: 15)");
     }
 
     // PlayableCharacter 인터페이스의 useSkill 메서드를 오버라이딩하여 전사 고유 스킬 동작을 출력
@@ -82,13 +80,11 @@ class Wizard implements PlayableCharacter, Movable, Attackable {
         System.out.println(name + "(마법사)이(가) 부드럽게 순간이동하며 신속하게 이동합니다.");
     }
 
-    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 대상을 향한 마법 공격 수행
+    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 마법사 공격 멘트 출력 (인자 없음)
     @Override
-    public void attack(PlayableCharacter target) {
-        // 파이어볼 마법으로 지정 대상을 공격한다는 로그 출력 (데미지: 25)
-        System.out.println(name + "(마법사)이(가) " + target.getName() + "에게 파이어볼 마법을 발사합니다! (데미지: 25)");
-        // 공격 대상의 takeDamage 메서드를 구동하여 마법사 고유 공격 피해 25를 가함
-        target.takeDamage(25);
+    public void attack() {
+        // 파이어볼 마법으로 일반 공격을 한다는 로그 출력
+        System.out.println(name + "(마법사)이(가) 전방을 향해 불타오르는 파이어볼 마법을 발사합니다! (기본 피해량: 25)");
     }
 
     // PlayableCharacter 인터페이스의 useSkill 메서드를 오버라이딩하여 고유 마법 시전 출력
@@ -144,13 +140,11 @@ class Archer implements PlayableCharacter, Movable, Attackable {
         System.out.println(name + "(궁수)이(가) 민첩한 발걸음으로 장애물을 뛰어넘으며 질주합니다.");
     }
 
-    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 타겟에 바람의 화살 발사
+    // Attackable 인터페이스의 attack 메서드를 오버라이딩하여 궁수 공격 멘트 출력 (인자 없음)
     @Override
-    public void attack(PlayableCharacter target) {
-        // 정밀 공격 메시지 콘솔 출력 (데미지: 18)
-        System.out.println(name + "(궁수)이(가) " + target.getName() + "에게 정밀한 바람의 화살을 날립니다! (데미지: 18)");
-        // 타겟의 takeDamage 메서드를 가동하여 화살 피해 18 적용
-        target.takeDamage(18);
+    public void attack() {
+        // 정밀 활 쏘기 공격 로그 출력
+        System.out.println(name + "(궁수)이(가) 활시위를 강하게 당겨 날카로운 바람의 화살을 날립니다! (기본 피해량: 18)");
     }
 
     // PlayableCharacter 인터페이스의 useSkill 메서드를 오버라이딩하여 멀티플 샷 기술 구현
@@ -222,21 +216,34 @@ public class Main {
         // 궁수 캐릭터의 시그니처 멀티플 샷 스킬 호출
         archer.useSkill();
 
-        // 다형성을 통한 실제 전투 및 피해 연산 시뮬레이션 헤더 출력
+        // 다형성을 통한 실제 전투 및 피해 연산 시뮬레이션 헤더 출력 (매개변수 제거 및 직접 피해 제어)
         System.out.println("\n=== 전투 상호작용 시뮬레이션 ===");
-        // warrior를 Attackable 타입으로 다운캐스팅하여 wizard를 공격 (다형성 전투 호출)
-        ((Attackable)warrior).attack(wizard);
-        // 마법사가 전사의 검 공격을 받은 이후 변화된 체력 상태 출력
+        
+        // 전사가 마법사를 공격하는 상황 시뮬레이션
+        System.out.println("[전사 -> 마법사 공격]");
+        // warrior를 Attackable 타입으로 다운캐스팅하여 공격 모션 가동
+        ((Attackable)warrior).attack();
+        // 마법사 객체의 takeDamage를 직접 실행하여 물리 피해 15를 가함
+        wizard.takeDamage(15);
+        // 피해 반영 결과 정보 출력
         wizard.showStatus();
 
-        // wizard를 Attackable 타입으로 다운캐스팅하여 archer를 공격 (다형성 전투 호출)
-        ((Attackable)wizard).attack(archer);
-        // 궁수가 마법사의 파이어볼 피해를 입은 이후 변화된 체력 상태 출력
+        // 마법사가 궁수를 공격하는 상황 시뮬레이션
+        System.out.println("\n[마법사 -> 궁수 공격]");
+        // wizard를 Attackable 타입으로 다운캐스팅하여 마법 발사
+        ((Attackable)wizard).attack();
+        // 궁수 객체의 takeDamage를 직접 실행하여 마법 피해 25를 가함
+        archer.takeDamage(25);
+        // 피해 반영 결과 정보 출력
         archer.showStatus();
 
-        // archer를 Attackable 타입으로 다운캐스팅하여 warrior를 공격 (다형성 전투 호출)
-        ((Attackable)archer).attack(warrior);
-        // 전사가 궁수의 바람의 화살 피해를 입은 이후 변화된 체력 상태 출력
+        // 궁수가 전사를 공격하는 상황 시뮬레이션
+        System.out.println("\n[궁수 -> 전사 공격]");
+        // archer를 Attackable 타입으로 다운캐스팅하여 화살 발사
+        ((Attackable)archer).attack();
+        // 전사 객체의 takeDamage를 직접 실행하여 원거리 화살 피해 18을 가함
+        warrior.takeDamage(18);
+        // 피해 반영 결과 정보 출력
         warrior.showStatus();
     }
 }

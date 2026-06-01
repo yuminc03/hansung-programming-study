@@ -6,8 +6,8 @@ interface Movable {
 
 // 전투 및 공격 능력을 부여하는 인터페이스
 interface Attackable {
-    // 캐릭터가 다른 캐릭터를 공격하는 행동을 정의하는 추상 메서드
-    void attack(PlayableCharacter target);
+    // 캐릭터가 공격하는 행동을 정의하는 추상 메서드
+    void attack();
 }
 
 // 플레이 가능한 캐릭터로서의 고유 기본 행동 및 상태 표준을 정의하는 인터페이스
