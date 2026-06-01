@@ -190,12 +190,12 @@ public class Main {
     public static void main(String[] args) {
         // 캐릭터 생성 로그를 출력
         System.out.println("=== 캐릭터 생성 및 초기 상태 ===");
-        // PlayableCharacter 인터페이스 타입 변수에 전사(Warrior) 객체 대입 (다형성 및 업캐스팅)
-        PlayableCharacter warrior = new Warrior("아라곤", 150);
-        // PlayableCharacter 인터페이스 타입 변수에 마법사(Wizard) 객체 대입 (다형성 및 업캐스팅)
-        PlayableCharacter wizard = new Wizard("간달프", 100);
-        // PlayableCharacter 인터페이스 타입 변수에 궁수(Archer) 객체 대입 (다형성 및 업캐스팅)
-        PlayableCharacter archer = new Archer("레골라스", 120);
+        // 구체적인 전사(Warrior) 타입 변수에 전사 객체 대입 (강제 캐스팅 방지)
+        Warrior warrior = new Warrior("아라곤", 150);
+        // 구체적인 마법사(Wizard) 타입 변수에 마법사 객체 대입 (강제 캐스팅 방지)
+        Wizard wizard = new Wizard("간달프", 100);
+        // 구체적인 궁수(Archer) 타입 변수에 궁수 객체 대입 (강제 캐스팅 방지)
+        Archer archer = new Archer("레골라스", 120);
 
         // 전사 캐릭터의 현재 체력 및 세부 상태 로그 출력
         warrior.showStatus();
@@ -206,12 +206,12 @@ public class Main {
 
         // 캐릭터들의 이동 액션 시뮬레이션을 위한 헤더 출력
         System.out.println("\n=== 이동 행동 시뮬레이션 ===");
-        // warrior 객체를 Movable 타입으로 형변환하여 전사 특화 이동 메서드 실행
-        ((Movable)warrior).move();
-        // wizard 객체를 Movable 타입으로 형변환하여 마법사 특화 이동 메서드 실행
-        ((Movable)wizard).move();
-        // archer 객체를 Movable 타입으로 형변환하여 궁수 특화 이동 메서드 실행
-        ((Movable)archer).move();
+        // 구체 클래스 타입이므로 직접 형변환 코드 없이 move() 호출 가능
+        warrior.move();
+        // 구체 클래스 타입이므로 직접 형변환 코드 없이 move() 호출 가능
+        wizard.move();
+        // 구체 클래스 타입이므로 직접 형변환 코드 없이 move() 호출 가능
+        archer.move();
 
         // 캐릭터들의 특수 스킬 사용 시뮬레이션을 위한 헤더 출력
         System.out.println("\n=== 스킬 사용 시뮬레이션 ===");
@@ -227,18 +227,18 @@ public class Main {
         
         // 전사가 공격하는 상황 시뮬레이션
         System.out.println("[전사 공격 행동]");
-        // warrior를 Attackable 타입으로 다운캐스팅하여 공격 실행 (자신의 hp 소모)
-        ((Attackable)warrior).attack();
+        // 구체 클래스 타입이므로 직접 형변환 코드 없이 attack() 호출 가능 (자신의 hp 소모)
+        warrior.attack();
 
         // 마법사가 공격하는 상황 시뮬레이션
         System.out.println("\n[마법사 공격 행동]");
-        // wizard를 Attackable 타입으로 다운캐스팅하여 마법 발사 (자신의 hp 소모)
-        ((Attackable)wizard).attack();
+        // 구체 클래스 타입이므로 직접 형변환 코드 없이 attack() 호출 가능 (자신의 hp 소모)
+        wizard.attack();
 
         // 궁수가 공격하는 상황 시뮬레이션
         System.out.println("\n[궁수 공격 행동]");
-        // archer를 Attackable 타입으로 다운캐스팅하여 활 사격 (자신의 hp 소모)
-        ((Attackable)archer).attack();
+        // 구체 클래스 타입이므로 직접 형변환 코드 없이 attack() 호출 가능 (자신의 hp 소모)
+        archer.attack();
 
         // 최종 상태를 검증하기 위한 콘솔 구분선 출력
         System.out.println("\n=== 최종 상태 ===");
