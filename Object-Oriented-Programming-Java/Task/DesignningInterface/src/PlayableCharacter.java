@@ -11,7 +11,7 @@ interface Attackable {
 }
 
 // 플레이 가능한 캐릭터로서의 고유 기본 행동 및 상태 표준을 정의하는 인터페이스
-public interface PlayableCharacter {
+interface PlayableCharacter {
 
     // 캐릭터의 고유 스킬을 사용하는 행동을 정의하는 추상 메서드
     void useSkill();

@@ -1,12 +1,12 @@
 // 전사 역할을 수행하며 플레이어 캐릭터, 이동 가능, 공격 가능 인터페이스를 다중 구현하는 클래스
 class Warrior implements PlayableCharacter, Movable, Attackable {
-    // 캐릭터의 이름을 저장하는 캡슐화된 인스턴스 변수
+    // 캐릭터의 이름
     private String name;
-    // 캐릭터의 현재 마나(MP)를 저장하는 캡슐화된 인스턴스 변수 (기존 hp를 mp로 변경)
+    // 캐릭터의 현재 마나
     private int mp;
 
     // 전사 객체를 생성하며 이름과 마나를 초기화하는 생성자
-    public Warrior(String name, int mp) {
+    Warrior(String name, int mp) {
         // 매개변수로 받은 이름을 멤버 변수 name에 저장
         this.name = name;
         // 매개변수로 받은 마나를 멤버 변수 mp에 저장
@@ -62,13 +62,13 @@ class Warrior implements PlayableCharacter, Movable, Attackable {
 
 // 마법사 역할을 수행하며 플레이어 캐릭터, 이동 가능, 공격 가능 인터페이스를 다중 구현하는 클래스
 class Wizard implements PlayableCharacter, Movable, Attackable {
-    // 마법사의 이름을 관리하는 private 캡슐화 인스턴스 변수
+    // 마법사의 이름
     private String name;
-    // 마법사의 마나(MP)를 관리하는 private 캡슐화 인스턴스 변수 (기존 hp를 mp로 변경)
+    // 마법사의 마나
     private int mp;
 
     // 마법사 객체를 생성하며 이름과 마나를 초기화하는 생성자
-    public Wizard(String name, int mp) {
+    Wizard(String name, int mp) {
         // 매개변수 name을 멤버 변수 name에 할당
         this.name = name;
         // 매개변수 mp를 멤버 변수 mp에 할당
@@ -124,13 +124,13 @@ class Wizard implements PlayableCharacter, Movable, Attackable {
 
 // 궁수 역할을 수행하며 플레이어 캐릭터, 이동 가능, 공격 가능 인터페이스를 다중 구현하는 클래스
 class Archer implements PlayableCharacter, Movable, Attackable {
-    // 궁수의 이름을 나타내는 private 변수
+    // 궁수의 이름
     private String name;
-    // 궁수의 마나(MP)를 나타내는 private 변수 (기존 hp를 mp로 변경)
+    // 궁수의 마나
     private int mp;
 
     // 궁수 객체를 생성하고 초기 상태를 바인딩하는 생성자
-    public Archer(String name, int mp) {
+    Archer(String name, int mp) {
         // 생성자 매개변수 name을 멤버 변수 name에 바인딩
         this.name = name;
         // 생성자 매개변수 mp를 멤버 변수 mp에 바인딩
@@ -184,11 +184,9 @@ class Archer implements PlayableCharacter, Movable, Attackable {
     }
 }
 
-// 다형성 행동 시뮬레이션을 실제로 가동하고 검증하는 메인 클래스
+// 메인 클래스
 public class Main {
-    // 프로그램 실행 시 최초로 호출되는 진입점 메서드
     public static void main(String[] args) {
-        // 캐릭터 생성 로그를 출력
         System.out.println("=== 캐릭터 생성 및 초기 상태 ===");
         // 구체적인 전사(Warrior) 타입 변수에 전사 객체 대입 (마나 150 초기화)
         Warrior warrior = new Warrior("아라곤", 150);
@@ -197,14 +195,13 @@ public class Main {
         // 구체적인 궁수(Archer) 타입 변수에 궁수 객체 대입 (마나 120 초기화)
         Archer archer = new Archer("레골라스", 120);
 
-        // 전사 캐릭터의 현재 마나 및 세부 상태 로그 출력
+        // 전사 캐릭터의 현재 상태 로그 출력
         warrior.showStatus();
-        // 마법사 캐릭터의 현재 마나 및 세부 상태 로그 출력
+        // 마법사 캐릭터의 현재 상태 로그 출력
         wizard.showStatus();
-        // 궁수 캐릭터의 현재 마나 및 세부 상태 로그 출력
+        // 궁수 캐릭터의 현재 상태 로그 출력
         archer.showStatus();
 
-        // 캐릭터들의 이동 액션 시뮬레이션을 위한 헤더 출력
         System.out.println("\n=== 이동 행동 시뮬레이션 ===");
         // 구체 클래스 타입이므로 직접 형변환 코드 없이 move() 호출 가능
         warrior.move();
@@ -213,7 +210,6 @@ public class Main {
         // 구체 클래스 타입이므로 직접 형변환 코드 없이 move() 호출 가능
         archer.move();
 
-        // 캐릭터들의 특수 스킬 사용 시뮬레이션을 위한 헤더 출력
         System.out.println("\n=== 스킬 사용 시뮬레이션 ===");
         // 전사 캐릭터의 시그니처 휠윈드 스킬 호출
         warrior.useSkill();
@@ -222,7 +218,6 @@ public class Main {
         // 궁수 캐릭터의 시그니처 멀티플 샷 스킬 호출
         archer.useSkill();
 
-        // 다형성을 통한 실제 전투 및 피해 연산 시뮬레이션 헤더 출력 (자체 마나를 소모하는 공격)
         System.out.println("\n=== 공격 시 마나 소모 시뮬레이션 ===");
         
         // 전사가 공격하는 상황 시뮬레이션
@@ -240,7 +235,6 @@ public class Main {
         // archer를 Attackable 타입으로 다운캐스팅하여 활 사격 (자신의 mp 소모)
         archer.attack();
 
-        // 최종 상태를 검증하기 위한 콘솔 구분선 출력
         System.out.println("\n=== 최종 상태 ===");
         // 전사의 최종 상태 정보 출력
         warrior.showStatus();
