@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>텍스트 입력 폼</title>
+  </head>
+  <body>
+    <h3>텍스트 입력 폼</h3>
+    <form>
+      TextArea <textarea cols="50" rows="5">placeholder</textarea><br>
+      dataList <input type="text" list="contrylist">
+      <datalist id="contrylist">
+        <option value="Korea"></option>
+        <option value="Japen"></option>
+        <option value="USA"></option>
+      </datalist><br>
+      <button type="button">Button</button><br>
+      <button type="button">
+        <img src="img/ryan_sleep_time.png" alt="라이언 잠" width="100">
+      </button><br>
+      <hr>
+      <input type="radio" name="music" value="1">I'm fine
+      <input type="radio" name="music" value="1">Save me
+      <input type="radio" name="music" value="1">Anpanman<br>
+      <label for="loginID">사용자 ID:</label><input type="text" id="loginID"><br>
+      <input type="color" value="#000000"><br>
+      <input type="email" placeholder="email 입력"><br>
+      <fieldset>
+        <legend>회원정보</legend>
+        <label for="loginID">ID: <input type="email" placeholder="email을 입력하세요"></label><br>
+        <label for="password">비밀번호: <input type="password"></label><br>
+        <label for="tel">전화번호: <input type="tel" placeholder="010-0000-0000"></label><br>
+        <input type="button" value="완료">
+      </fieldset>
+    </form>
+  </body>
+</html>
