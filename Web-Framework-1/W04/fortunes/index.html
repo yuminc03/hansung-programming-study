@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>미스틱 운세 뽑기</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="night-sky"></div>
+
+  <main class="app">
+    <p class="eyebrow">🔮 MYSTIC DRAW 🔮</p>
+    <h1 class="title">오늘의 운세 뽑기</h1>
+    <p class="subtitle">이름을 적고 별에게 물어보세요</p>
+
+    <div class="draw-box">
+      <input id="name-input" type="text" placeholder="이름을 입력하세요" />
+      <button id="draw-button">운세 뽑기</button>
+    </div>
+
+    <p class="hint">💡 입력창에서 <b>Enter</b> 키를 눌러도 뽑을 수 있어요</p>
+
+    <div class="container">
+      <p class="list-label">뽑은 운세 (카드를 누르면 사라져요)</p>
+      <ul id="fortune-list"></ul>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
