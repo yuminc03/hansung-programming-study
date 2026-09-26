@@ -169,11 +169,16 @@ h1#title {
 }
 
 #fortune-list {
-  list-style: none;
+  list-style: none; /* <li> 기본 점(*) 마커 제거 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* 카드들을 세로로 쌓기 */
+  gap: 12px; /* 카드 사이 간격 */
 }
 
 /* =====================================================================
-  7. 운세 카드 목록
+  카드 하나의 모양 (li > div 구조)
   script.js에서 createElement로 만드는 구조:
   <li><div class="card">이모지 + 문구 + 닫기버튼</div></li>
   와 정확히 짝이 맞아야 스타일이 적용됨
