@@ -169,11 +169,16 @@ h1#title {
 }
 
 #fortune-list {
-  list-style: none;
+  list-style: none; /* <li> 기본 점(*) 마커 제거 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* 카드들을 세로로 쌓기 */
+  gap: 12px; /* 카드 사이 간격 */
 }
 
 /* =====================================================================
-  7. 운세 카드 목록
+  카드 하나의 모양 (li > div 구조)
   script.js에서 createElement로 만드는 구조:
   <li><div class="card">이모지 + 문구 + 닫기버튼</div></li>
   와 정확히 짝이 맞아야 스타일이 적용됨
@@ -212,10 +217,10 @@ li > div.card {
 }
 
 /* =====================================================================
-마우스를 올렸을 때(mouseenter)의 반짝임 효과
-이 클래스는 CSS가 스스로 붙이는 게 아니라,
-script.js의 card.classList.add("glow") 코드가 붙여줌
-→ JS와 CSS가 협업하는 대표적인 패턴
+  마우스를 올렸을 때(mouseenter)의 반짝임 효과
+  이 클래스는 CSS가 스스로 붙이는 게 아니라,
+  script.js의 card.classList.add("glow") 코드가 붙여줌
+  → JS와 CSS가 협업하는 대표적인 패턴
 ===================================================================== */
 li > div.card.glow {
   border-color: var(--gold);
@@ -248,7 +253,7 @@ li > div.card.glow {
 }
 
 /* 운세를 하나도 안 뽑았을 때 보여주는 안내 문구 스타일
-(script.js의 checkEmpty 함수가 만드는 <li id="empty-msg">) */
+  (script.js의 checkEmpty 함수가 만드는 <li id="empty-msg">) */
 .empty {
   color: rgba(242, 240, 255, 0.4);
   font-size: 13px;

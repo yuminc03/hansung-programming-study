@@ -12,6 +12,8 @@ const fortunes = [
   { emoji: "☕", text: "오늘은 카페인 한 잔의 여유가 필요한 날." },
   { emoji: "🌈", text: "힘든 일 뒤엔 반드시 좋은 순간이 옵니다." },
   { emoji: "🕯️", text: "조용한 시간 속에서 답을 찾게 될 거예요." },
+  { emoji: "💪🏻", text: "오늘은 그동안의 스트레스를 풀어줄 시간이에요." },
+  { emoji: "✅", text: "오늘 일은 오늘 안에 끝내야해요." },
 ];
 
 // ---------------------------------------------------------------------
@@ -32,7 +34,7 @@ function createFortuneCard(name) {
 
   // 이름을 넣은 문구 만들기 (이름이 없으면 "당신"으로 대체)
   const displayName = name.trim() === "" ? "당신" : name.trim();
-  const message = `\({displayName}님,\){text}`;
+  const message = `${displayName}님, ${text}`;
 
   // li 태그 생성 (강의 예제와 동일한 구조: li > div > (내용, 버튼))
   const li = document.createElement("li");
