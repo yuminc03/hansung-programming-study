@@ -1,0 +1,262 @@
+/* =====================================================================
+   미스틱 운세 뽑기 - 스타일시트
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. 색상 변수 (CSS 커스텀 프로퍼티)
+   :root = 문서 최상위. 여기 선언해두면 파일 어디서든
+   var(--변수이름)으로 꺼내 쓸 수 있음.
+   -> 나중에 색상 하나만 바꾸고 싶어도, 여기 한 줄만 고치면
+      이 색을 쓰는 모든 요소에 자동 반영됨 (팔레트 관리 방식)
+--------------------------------------------------------------------- */
+:root {
+  --navy-deep: #0b0f2b; /* 배경 - 가장 어두운 남색 */
+  --navy-mid: #171c42; /* 배경 그라데이션의 중간 톤 */
+  --gold: #e8c468; /* 포인트 컬러 (버튼, 강조 텍스트) */
+  --gold-soft: #f4dfa0; /* 골드보다 밝은 톤 (제목 그라데이션용) */
+  --lilac: #b9a7ff; /* 보조 컬러 (부제목, 라벨) */
+  --ink: #f2f0ff; /* 기본 글자색 (거의 흰색) */
+  --card-bg: #1c2150; /* 운세 카드 배경색 */
+}
+
+/* ---------------------------------------------------------------------
+   3. 페이지 전체 배경
+   radial-gradient로 위쪽은 밝고 아래로 갈수록 어두워지는
+   "밤하늘" 느낌의 배경을 표현
+--------------------------------------------------------------------- */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(
+    ellipse at top,
+    var(--navy-mid),
+    var(--navy-deep) 70%
+  );
+  color: var(--ink);
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+  overflow-x: hidden; /* 별 장식이 화면 밖으로 나가도 가로 스크롤 안 생기게 */
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------
+   4. 배경 별 장식 (이미지 파일 없이 css만으로 표현)
+   radial-gradient를 여러 개 겹쳐서, 각 좌표(%)에
+   작은 점(별)을 하나씩 찍는 방식
+   position: fixed -> 스크롤해도 별이 같은 자리에 고정됨
+   pointer-events: none -> 이 배경을 클릭해도 뒤에 있는
+   버튼 등이 정상적으로 클릭되게 함 (장식은 클릭 방해 X)
+--------------------------------------------------------------------- */
+.night-sky {
+  position: fixed;
+  inset: 0; /* top/right/bottom/left: 0 을 한 번에 지정 */
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, var(--gold-soft), transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, var(--lilac), transparent),
+    radial-gradient(2px 2px at 85% 60%, var(--gold-soft), transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, var(--lilac), transparent),
+    radial-gradient(1.5px 1.5px at 60% 45%, var(--gold-soft), transparent);
+  opacity: 0.7;
+  z-index: 0; /* 다른 콘텐츠보다 뒤에 깔리도록 */
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------
+   5. 앱 콘텐츠 영역 (main 태그에 적용됨)
+   max-width로 너비를 제한해서, 큰 화면에서도
+   내용이 너무 옆으로 퍼지지 않고 가운데 정렬되게 함
+   --------------------------------------------------------------------- */
+.app {
+  position: relative;
+  z-index: 1; /* .night-sky(z-index:0)보다 앞에 오도록 */
+  max-width: 560px;
+  margin: 0 auto; /* 좌우 margin auto = 가운데 정렬 */
+  padding: 56px 24px 80px;
+  text-align: center;
+}
+
+/* * 타이틀 위에 작게 뜨는 라벨 (예: "🔮 MYSTIC DRAW 🔮") * */
+.eyebrow {
+  letter-spacing: 0.3em; /* 글자 사이 간격을 넓혀 고급스러운 느낌 */
+  font-size: 12px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* * 메인 타이틀 - 그라데이션 글자색 효과 * */
+h1#title {
+  font-family: Georgia, "Nanum Myeongjo", serif;
+  font-size: 40px;
+  margin: 0 0 8px;
+  /* 아래 3줄: 글자 안에 그라데이션 색을 채워 넣는 트릭 */
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  -webkit-background-clip: text; /* 배경을 글자 모양대로만 잘라 보여줌 */
+  background-clip: text;
+  color: transparent; /* 원래 글자색은 투명 처리 (배경이 대신 보이게) */
+}
+
+.subtitle {
+  color: var(--lilac);
+  margin: 0 0 32px;
+  font-size: 15px;
+}
+
+/* =====================================================================
+   6. 입력 영역 (이름 입력창 + 뽑기 버튼)
+===================================================================== */
+.draw-box {
+  display: flex; /* 입력창과 버튼을 가로로 나란히 배치 */
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+#name-input {
+  flex: 1; /* 남는 공간을 입력창이 채우도록 */
+  max-width: 240px;
+  padding: 12px 14px;
+  border-radius: 999px; /* 값이 크면 완전한 알약(pill) 모양이 됨 */
+  border: 1px solid rgba(232, 196, 104, 0.4); /* 골드 반투명 테두리 */
+  background: rgba(255, 255, 255, 0.06); /* 아주 옅은 반투명 흰색 */
+  color: var(--ink);
+  font-size: 14px;
+  outline: none; /* 브라우저 기본 포커스 테두리 제거 (아래서 직접 스타일링) */
+}
+
+/* 입력창을 클릭(포커스)했을 때만 적용되는 스타일 */
+#name-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 3px rgba(232, 196, 104, 0.2); /* 은은한 빛 번짐 효과 */
+}
+
+#draw-button {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: #241a00; /* 밝은 배경 위에는 어두운 글자색이 잘 보임 */
+  font-weight: 700;
+  cursor: pointer; /* 마우스를 올리면 손가락 모양 커서로 "클릭 가능"함을 표시 */
+  transition: transform 0.15s ease; /* hover 시 움직임을 부드럽게 */
+}
+
+/* 마우스를 올렸을 때 버튼이 살짝 위로 떠오르는 효과 */
+#draw-button:hover {
+  transform: translateY(-2px);
+}
+
+/* 클릭하는 순간(누르고 있는 동안)은 원래 위치로 */
+#draw-button:active {
+  transform: translateY(0);
+}
+
+.hint {
+  font-size: 12px;
+  color: rgba(242, 240, 255, 0.5); /* 흐린 흰색 - 덜 중요한 보조 설명이므로 */
+  margin-bottom: 36px;
+}
+
+/* =====================================================================
+   7. 운세 카드 목록
+===================================================================== */
+.container {
+  text-align: left; /* 카드 안 텍스트는 왼쪽 정렬이 자연스러움 */
+}
+
+.list-label {
+  font-size: 13px;
+  color: var(--lilac);
+  margin-bottom: 12px;
+}
+
+#fortune-list {
+  list-style: none; /* <li> 기본 점(*) 마커 제거 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* 카드들을 세로로 쌓기 */
+  gap: 12px; /* 카드 사이 간격 */
+}
+
+/* =====================================================================
+  카드 하나의 모양 (li > div 구조)
+  script.js에서 createElement로 만드는 구조:
+  <li><div class="card">이모지 + 문구 + 닫기버튼</div></li>
+  와 정확히 짝이 맞아야 스타일이 적용됨
+===================================================================== */
+li > div.card {
+  background: var(-- card-bg);
+  border: 1px solid rgba(232, 196, 104, 0.25);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex; /* 이모지 - 문구 - 버튼을 가로로 나란히 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+  gap: 12px;
+  cursor: pointer; /* 카드 자체도 클릭 가능(삭제)함을 알림 */
+
+  /* 여러 속성을 동시에 부드럽게 전환 (호버 시 자연스러운 애니메이션) */
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+
+  /* 카드가 새로 추가될 때 재생되는 등장 애니메이션 */
+  animation: card-in 0.35s ease;
+}
+
+/* card-in 애니메이션 정의: 살짝 아래+작은 크기에서 시작해서
+제자리+원래 크기로 자연스럽게 나타남 */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================================================
+  마우스를 올렸을 때(mouseenter)의 반짝임 효과
+  이 클래스는 CSS가 스스로 붙이는 게 아니라,
+  script.js의 card.classList.add("glow") 코드가 붙여줌
+  → JS와 CSS가 협업하는 대표적인 패턴
+===================================================================== */
+li > div.card.glow {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px □rgba(232, 196, 104, 0.35); /* 은은하게 빛나는 그림자 */
+  transform: translateY(-2px); /* 살짝 떠오르는 느낌 */
+}
+
+.card .emoji {
+  font-size: 22px;
+}
+
+.card .text {
+  flex: 1; /* 이모지/버튼을 뺀 나머지 공간을 문구가 채움 */
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5; /* 문구가 두 줄 이상일 때 줄 간격 확보 */
+}
+
+.card .close-btn {
+  border: none;
+  background: transparent; /* 버튼처럼 안 보이게 배경 제거 (아이콘처럼 보이도록) */
+  color: rgba(242, 240, 255, 0.4);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 닫기 버튼에 마우스를 올리면 골드색으로 강조 */
+.card .close-btn:hover {
+  color: var(--gold);
+}
+
+/* 운세를 하나도 안 뽑았을 때 보여주는 안내 문구 스타일
+  (script.js의 checkEmpty 함수가 만드는 <li id="empty-msg">) */
+.empty {
+  color: rgba(242, 240, 255, 0.4);
+  font-size: 13px;
+  text-align: center;
+  padding: 20px 0;
+}
