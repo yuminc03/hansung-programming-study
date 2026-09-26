@@ -217,10 +217,10 @@ li > div.card {
 }
 
 /* =====================================================================
-마우스를 올렸을 때(mouseenter)의 반짝임 효과
-이 클래스는 CSS가 스스로 붙이는 게 아니라,
-script.js의 card.classList.add("glow") 코드가 붙여줌
-→ JS와 CSS가 협업하는 대표적인 패턴
+  마우스를 올렸을 때(mouseenter)의 반짝임 효과
+  이 클래스는 CSS가 스스로 붙이는 게 아니라,
+  script.js의 card.classList.add("glow") 코드가 붙여줌
+  → JS와 CSS가 협업하는 대표적인 패턴
 ===================================================================== */
 li > div.card.glow {
   border-color: var(--gold);
@@ -253,7 +253,7 @@ li > div.card.glow {
 }
 
 /* 운세를 하나도 안 뽑았을 때 보여주는 안내 문구 스타일
-(script.js의 checkEmpty 함수가 만드는 <li id="empty-msg">) */
+  (script.js의 checkEmpty 함수가 만드는 <li id="empty-msg">) */
 .empty {
   color: rgba(242, 240, 255, 0.4);
   font-size: 13px;
