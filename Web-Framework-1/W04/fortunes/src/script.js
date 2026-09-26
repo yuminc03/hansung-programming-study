@@ -32,7 +32,7 @@ function createFortuneCard(name) {
 
   // 이름을 넣은 문구 만들기 (이름이 없으면 "당신"으로 대체)
   const displayName = name.trim() === "" ? "당신" : name.trim();
-  const message = `\({displayName}님,\){text}`;
+  const message = `${displayName}님, ${text}`;
 
   // li 태그 생성 (강의 예제와 동일한 구조: li > div > (내용, 버튼))
   const li = document.createElement("li");
