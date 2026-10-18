@@ -1,0 +1,8 @@
+{
+  "skills": {
+    "sales-analyzer": {
+      "path": "./skills/auto-sales-analyzer.md",
+      "enabled": true
+    }
+  }
+}
