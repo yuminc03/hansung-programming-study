@@ -1,5 +1,6 @@
 import React from "react";
 import InlineCard from "./InlineCard";
+import CssCard from "./CssCard";
 
 import "./App.css";
 
@@ -10,6 +11,7 @@ function App() {
 
       <div className="card-container">
         <InlineCard />
+        <CssCard />
       </div>
     </div>
   );
