@@ -1,0 +1,16 @@
+.css-card {
+  background-color: #fff3e0;
+  border: 2px solid #ff9800;
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+}
+
+.css-button {
+  background-color: #ff9800;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+}
