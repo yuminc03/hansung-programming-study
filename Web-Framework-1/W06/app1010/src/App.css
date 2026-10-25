@@ -12,3 +12,52 @@ body {
   border-radius: 18px;
   box-shadow: 0 4px 15px #dddddd;
 }
+
+button {
+  padding: 12px 18px;
+  margin: 6px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
+
+/* 증가: 민트 그린 */
+.btn-increase {
+  background-color: #20b894;
+}
+
+/* 감소: 코랄 핑크 */
+.btn-decrease {
+  background-color: #ef6b78;
+}
+
+/* 초기화: 라벤더 퍼플 */
+.btn-reset {
+  background-color: #8b7ce8;
+}
+
+/* 구매하기: 블루 */
+.btn-buy {
+  background-color: #4679e8;
+  padding: 14px 35px;
+}
+
+.warning {
+  color: #d63e4e;
+  font-weight: bold;
+}
+
+.message {
+  margin-top: 20px;
+  color: #3449a5;
+  font-weight: bold;
+}
