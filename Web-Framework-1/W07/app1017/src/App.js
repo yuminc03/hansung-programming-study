@@ -3,6 +3,7 @@ import InlineCard from "./InlineCard";
 import CssCard from "./CssCard";
 import ModuleCard from "./ModuleCard";
 import StyledCard from "./StyledCard";
+import TailwindCard from "./TailwindCard";
 
 import "./App.css";
 
@@ -16,6 +17,7 @@ function App() {
         <CssCard />
         <ModuleCard />
         <StyledCard />
+        <TailwindCard />
       </div>
     </div>
   );
