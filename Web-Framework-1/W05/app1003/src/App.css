@@ -1,0 +1,19 @@
+/* 전체 화면 */
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* 제목 */
+h1 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* 메뉴 카드 배치 */
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
