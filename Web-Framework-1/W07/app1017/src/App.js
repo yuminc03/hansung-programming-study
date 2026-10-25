@@ -2,6 +2,7 @@ import React from "react";
 import InlineCard from "./InlineCard";
 import CssCard from "./CssCard";
 import ModuleCard from "./ModuleCard";
+import StyledCard from "./StyledCard";
 
 import "./App.css";
 
@@ -14,6 +15,7 @@ function App() {
         <InlineCard />
         <CssCard />
         <ModuleCard />
+        <StyledCard />
       </div>
     </div>
   );
