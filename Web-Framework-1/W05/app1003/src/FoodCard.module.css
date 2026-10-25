@@ -1,0 +1,46 @@
+.card {
+  width: 220px;
+  min-height: 250px;
+
+  padding: 25px;
+  margin: 15px;
+
+  background-color: white;
+
+  border: 2px solid #dddddd;
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emoji {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 18px;
+  color: #555555;
+}
+
+.popular {
+  background-color: #fff8dc;
+  border: 3px solid orange;
+}
+
+.popularText {
+  color: orange;
+  font-weight: bold;
+}
+
+.spicyText {
+  color: red;
+  font-weight: bold;
+}
