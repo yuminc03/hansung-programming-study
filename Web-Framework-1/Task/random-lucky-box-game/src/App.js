@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import PointBoard from "./PointBoard";
 import LuckyBox from "./LuckyBox";
+import PrizeList from "./PrizeList";
 import { START_POINTS, BOX_COST, PRIZES } from "./prizes";
 
 const START_MESSAGE = "럭키박스를 열어 상품을 받아보세요!";
@@ -14,6 +15,7 @@ function App() {
   const [lastResult, setLastResult] = useState(null);
   const [openCount, setOpenCount] = useState(0);
   const [message, setMessage] = useState(START_MESSAGE);
+  const [selectedPrize, setSelectedPrize] = useState(null);
 
   // 당첨 기록마다 고유 번호 부여 (같은 상품이 여러 번 당첨돼도 구분)
   const nextRecordId = useRef(1);
@@ -47,6 +49,21 @@ function App() {
     setMessage(`🎉 축하합니다! ${prize.emoji} ${prize.name} 당첨!`);
   }
 
+  // 당첨 기록 삭제 (사용한 포인트는 반환하지 않음)
+  function deleteWin(recordId) {
+    setWins((prev) => prev.filter((win) => win.recordId !== recordId));
+    setMessage("🗑️ 당첨 기록을 삭제했습니다. (사용한 포인트는 반환되지 않습니다)");
+  }
+
+  // 상품 상세 정보 열기 / 닫기
+  function showDetail(prize) {
+    setSelectedPrize(prize);
+  }
+
+  function closeDetail() {
+    setSelectedPrize(null);
+  }
+
   return (
     <div className="container">
       <h1>🎁 랜덤 럭키박스 게임</h1>
@@ -64,6 +81,15 @@ function App() {
         lastResult={lastResult}
         message={message}
         onOpen={openBox}
+      />
+
+      <PrizeList
+        wins={wins}
+        prizes={PRIZES}
+        selectedPrize={selectedPrize}
+        onDelete={deleteWin}
+        onShowDetail={showDetail}
+        onCloseDetail={closeDetail}
       />
     </div>
   );
