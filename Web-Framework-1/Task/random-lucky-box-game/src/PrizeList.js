@@ -29,7 +29,7 @@ function PrizeList({
       <h2>🏆 당첨 상품 ({wins.length}개)</h2>
 
       {/* 상품별 획득 개수 */}
-      <ul className="prize-summary">
+      <ul className="prize-summary" aria-label="상품별 획득 개수">
         {prizes.map((prize) => (
           <li key={prize.id}>
             <span>
@@ -46,7 +46,7 @@ function PrizeList({
       ) : (
         <>
           <p className="hint">🖱️ 더블클릭: 기록 삭제 / 우클릭: 상세 정보</p>
-          <ol className="win-list">
+          <ol className="win-list" aria-label="당첨 순서 목록">
             {wins.map((win, index) => {
               const prize = findPrize(win.prizeId);
               return (
