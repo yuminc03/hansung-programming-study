@@ -64,6 +64,17 @@ function App() {
     setSelectedPrize(null);
   }
 
+  // 게임 초기화
+  function resetGame() {
+    setNickname("");
+    setPoints(START_POINTS);
+    setWins([]);
+    setLastResult(null);
+    setOpenCount(0);
+    setSelectedPrize(null);
+    setMessage(START_MESSAGE);
+  }
+
   return (
     <div className="container">
       <h1>🎁 랜덤 럭키박스 게임</h1>
@@ -91,6 +102,10 @@ function App() {
         onShowDetail={showDetail}
         onCloseDetail={closeDetail}
       />
+
+      <button className="btn-reset" onClick={resetGame}>
+        🔄 초기화
+      </button>
     </div>
   );
 }
