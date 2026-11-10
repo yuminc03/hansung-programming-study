@@ -13,6 +13,24 @@ import {
 
 const START_MESSAGE = "럭키박스를 열어 행운을 확인하세요!";
 
+// 상품별 당첨 확률(chance)에 따라 상품 하나를 뽑기
+// 0~100 사이 난수를 만들고, 확률을 앞에서부터 더해 가다가 난수보다 커지는 상품이 당첨
+// 예) 초콜릿 40, 곰인형 20 → 난수 0~40 미만: 초콜릿, 40~60 미만: 곰인형
+function pickPrize() {
+  const random = Math.random() * 100;
+  let sum = 0;
+
+  for (let i = 0; i < PRIZES.length; i++) {
+    sum += PRIZES[i].chance;
+    if (random < sum) {
+      return PRIZES[i];
+    }
+  }
+
+  // 확률 합계가 100보다 작게 설정된 경우를 대비해 마지막 상품 반환
+  return PRIZES[PRIZES.length - 1];
+}
+
 function App() {
   // State 선언
   const [nickname, setNickname] = useState(DEFAULT_NICKNAME);
@@ -43,8 +61,8 @@ function App() {
       return;
     }
 
-    // 상품 4종 중 하나를 무작위로 선택 (각 25%)
-    const prize = PRIZES[Math.floor(Math.random() * PRIZES.length)];
+    // 상품별 당첨 확률에 따라 상품 하나를 선택
+    const prize = pickPrize();
     const record = { recordId: nextRecordId.current, prize: prize };
     nextRecordId.current += 1;
 
