@@ -3,6 +3,9 @@ function LuckyBox({ points, cost, prizes, lastResult, message, onOpen }) {
   // 포인트가 박스 비용보다 적으면 열 수 없음
   const canOpen = points >= cost;
 
+  // 상품을 당첨 확률이 낮은 순(오름차순)으로 정렬 (원본 배열은 바꾸지 않도록 복사 후 정렬)
+  const sortedPrizes = [...prizes].sort((a, b) => a.chance - b.chance);
+
   return (
     <section className="lucky-box">
       {/* 당첨 전에는 선물 상자, 당첨 후에는 마지막 당첨 상품 표시 */}
@@ -37,7 +40,7 @@ function LuckyBox({ points, cost, prizes, lastResult, message, onOpen }) {
       <div className="prize-lineup">
         <p className="lineup-title">이 상자에서 나올 수 있는 선물</p>
         <ul>
-          {prizes.map((prize) => (
+          {sortedPrizes.map((prize) => (
             <li key={prize.id}>
               <span className="lineup-emoji">{prize.emoji}</span>
               <span className="lineup-name">{prize.name}</span>
