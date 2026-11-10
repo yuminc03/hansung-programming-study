@@ -3,13 +3,19 @@ import "./App.css";
 import PointBoard from "./PointBoard";
 import LuckyBox from "./LuckyBox";
 import PrizeList from "./PrizeList";
-import { START_POINTS, BOX_COST, PRIZES } from "./prizes";
+import {
+  START_POINTS,
+  BOX_COST,
+  DEFAULT_NICKNAME,
+  RESET_NICKNAME,
+  PRIZES,
+} from "./prizes";
 
 const START_MESSAGE = "럭키박스를 열어 상품을 받아보세요!";
 
 function App() {
   // State 선언
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState(DEFAULT_NICKNAME);
   const [points, setPoints] = useState(START_POINTS);
   const [wins, setWins] = useState([]);
   const [lastResult, setLastResult] = useState(null);
@@ -66,7 +72,7 @@ function App() {
 
   // 게임 초기화
   function resetGame() {
-    setNickname("");
+    setNickname(RESET_NICKNAME);
     setPoints(START_POINTS);
     setWins([]);
     setLastResult(null);

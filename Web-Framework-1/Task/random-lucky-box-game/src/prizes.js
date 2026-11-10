@@ -2,6 +2,10 @@
 export const START_POINTS = 1000;
 export const BOX_COST = 200;
 
+// 닉네임: 시작할 때는 본인 성명, 초기화하면 '럭키학생'
+export const DEFAULT_NICKNAME = "추유민";
+export const RESET_NICKNAME = "럭키학생";
+
 // 당첨 상품 4종 (각 25% 확률)
 export const PRIZES = [
   {
