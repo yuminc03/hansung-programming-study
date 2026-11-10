@@ -1,199 +1,208 @@
 /* 전체 배경 */
 body {
-  background: linear-gradient(160deg, #fff4e6 0%, #ffe3ec 100%);
-  min-height: 100vh;
-  color: #333;
+  background: #f7f3ff;
+  color: #44365b;
+  font-family: "Malgun Gothic", "맑은 고딕", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
 
-/* 게임 전체 영역 */
+p {
+  margin: 0;
+}
+
+/* 게임 전체 카드 */
 .container {
-  max-width: 560px;
-  margin: 40px auto;
-  padding: 0 16px;
+  box-sizing: border-box;
+  max-width: 760px;
+  margin: 28px auto;
+  padding: 30px 30px 44px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(104, 81, 161, 0.12);
   text-align: center;
 }
 
 .container h1 {
-  color: #d6336c;
-  margin-bottom: 24px;
+  margin: 4px 0 12px;
+  font-size: 34px;
+  color: #6851a1;
 }
 
-/* 공통 카드 스타일 */
-.point-board,
-.lucky-box,
-.prize-list {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(214, 51, 108, 0.12);
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-/* ===== PointBoard ===== */
-.nickname {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  font-weight: bold;
-}
-
-.nickname input {
-  flex: 1;
-  padding: 10px 12px;
-  border: 2px solid #ffc9de;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-.nickname input:focus {
-  outline: none;
-  border-color: #d6336c;
-}
-
-.stats {
-  display: flex;
-  gap: 12px;
-}
-
-.stat {
-  flex: 1;
-  background: #fff0f6;
-  border-radius: 12px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.stat-label {
-  font-size: 14px;
-  color: #868e96;
-}
-
-.stat-value {
-  font-size: 24px;
-  color: #d6336c;
-}
-
-/* ===== LuckyBox ===== */
-.box-display {
-  width: 160px;
-  height: 160px;
-  margin: 0 auto 20px;
-  border-radius: 20px;
-  background: #fff9db;
-  border: 3px dashed #fab005;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.box-display.opened {
-  background: #fff0f6;
-  border: 3px solid #d6336c;
-  animation: pop 0.4s ease-out;
-}
-
-.result-emoji {
-  font-size: 64px;
-}
-
-.result-name {
-  font-size: 18px;
-  color: #d6336c;
-}
-
-@keyframes pop {
-  0% {
-    transform: scale(0.7);
-  }
-  70% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+.subtitle {
+  margin-bottom: 26px;
+  color: #796b8e;
+  font-size: 15px;
 }
 
 /* 공통 버튼 스타일 */
 button {
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
+  font-family: inherit;
   font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: filter 0.2s, transform 0.1s;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(0.96);
 }
 
 button:active:not(:disabled) {
   transform: scale(0.97);
 }
 
-.btn-open {
-  width: 100%;
-  padding: 14px;
-  background: #d6336c;
-  color: #fff;
-  font-size: 18px;
+/* ===== PointBoard ===== */
+.point-board {
+  padding: 18px;
+  margin-bottom: 20px;
+  background: #f4eeff;
+  border-radius: 16px;
+  text-align: left;
 }
 
-.btn-open:hover:not(:disabled) {
-  background: #c2255c;
+.nickname {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-weight: bold;
 }
 
-.btn-open:disabled {
-  background: #ced4da;
-  color: #868e96;
-  cursor: not-allowed;
+.nickname input {
+  box-sizing: border-box;
+  width: 202px;
+  height: 41px;
+  padding: 0 12px;
+  border: 1px solid #cdbfe6;
+  border-radius: 10px;
+  background: #fff;
+  color: #222;
+  font-family: inherit;
+  font-size: 16px;
 }
 
-.warning {
-  color: #e03131;
+.nickname input:focus {
+  outline: none;
+  border-color: #6851a1;
+}
+
+.point-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.open-count {
+  color: #796b8e;
+}
+
+/* ===== LuckyBox ===== */
+.lucky-box {
+  padding: 40px 20px 26px;
+  margin-bottom: 32px;
+  background: #fff8fc;
+  border-radius: 16px;
+}
+
+.box-emoji {
+  font-size: 88px;
+  line-height: 1;
+}
+
+.box-emoji.opened {
+  animation: pop 0.4s ease-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.box-caption {
+  margin-top: 18px;
+  color: #a15b86;
   font-weight: bold;
 }
 
 .message {
-  color: #495057;
-  min-height: 1.2em;
+  margin: 14px 0 16px;
+  font-weight: bold;
+}
+
+.btn-open {
+  padding: 13px 28px;
+  background: #f4b7d0;
+  color: #643a5a;
+  font-weight: bold;
+}
+
+.btn-open:disabled {
+  background: #e6e1ec;
+  color: #a39cad;
+  cursor: not-allowed;
+}
+
+.warning {
+  margin-top: 14px;
+  color: #d64566;
+  font-weight: bold;
 }
 
 /* ===== PrizeList ===== */
-.prize-list h2 {
-  margin-top: 0;
-  color: #d6336c;
+.prize-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.prize-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.btn-reset {
+  padding: 10px 20px;
+  background: #d9e9ff;
+  color: #355a88;
+}
+
+.empty {
+  padding: 24px;
+  background: #f8f6fc;
+  border-radius: 14px;
+  color: #80758c;
 }
 
 .prize-summary {
   list-style: none;
   padding: 0;
-  margin: 0 0 16px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  margin: 0 0 14px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
 .prize-summary li {
   display: flex;
-  justify-content: space-between;
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 10px 12px;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #f4eeff;
+  border-radius: 999px;
+  font-size: 14px;
 }
 
 .prize-summary strong {
-  color: #d6336c;
-}
-
-.empty {
-  color: #adb5bd;
-}
-
-.hint {
-  font-size: 14px;
-  color: #868e96;
+  color: #6851a1;
 }
 
 .win-list {
@@ -207,24 +216,24 @@ button:active:not(:disabled) {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 12px;
-  margin-bottom: 6px;
-  border: 1px solid #ffdeeb;
-  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: #f8f6fc;
+  border-radius: 14px;
   cursor: pointer;
   user-select: none;
+  transition: background-color 0.2s;
 }
 
 .win-list li:hover {
-  background: #fff0f6;
-  border-color: #d6336c;
+  background: #f4eeff;
 }
 
 .win-order {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: #d6336c;
+  background: #6851a1;
   color: #fff;
   font-size: 13px;
   display: flex;
@@ -232,16 +241,21 @@ button:active:not(:disabled) {
   justify-content: center;
 }
 
+.win-emoji {
+  font-size: 22px;
+}
+
 .prize-detail {
-  margin-top: 16px;
-  padding: 16px;
-  border-radius: 12px;
-  background: #fff9db;
-  border: 2px solid #fab005;
+  margin-top: 14px;
+  padding: 18px;
+  background: #fff8fc;
+  border: 1px solid #f4b7d0;
+  border-radius: 14px;
 }
 
 .prize-detail h3 {
-  margin-top: 0;
+  margin: 0 0 10px;
+  color: #6851a1;
 }
 
 .prize-detail p {
@@ -249,36 +263,28 @@ button:active:not(:disabled) {
 }
 
 .btn-close {
-  margin-top: 8px;
+  margin-top: 10px;
   padding: 8px 20px;
-  background: #fab005;
-  color: #fff;
+  background: #f4b7d0;
+  color: #643a5a;
 }
 
-.btn-close:hover {
-  background: #f59f00;
-}
-
-/* ===== 초기화 버튼 ===== */
-.btn-reset {
-  padding: 12px 32px;
-  background: #495057;
-  color: #fff;
-}
-
-.btn-reset:hover {
-  background: #343a40;
+/* 조작 안내 문구 */
+.hint {
+  margin-top: 22px;
+  color: #80758c;
+  font-size: 13px;
 }
 
 /* 좁은 화면 */
-@media (max-width: 480px) {
-  .stats,
-  .nickname {
-    flex-direction: column;
-    align-items: stretch;
+@media (max-width: 600px) {
+  .container {
+    margin: 16px;
+    padding: 20px 16px;
   }
 
-  .prize-summary {
-    grid-template-columns: 1fr;
+  .nickname input {
+    flex: 1;
+    width: auto;
   }
 }

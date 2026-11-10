@@ -6,6 +6,7 @@ function PrizeList({
   onDelete,
   onShowDetail,
   onCloseDetail,
+  onReset,
 }) {
   // 상품 id로 상품 정보 찾기
   function findPrize(prizeId) {
@@ -26,26 +27,30 @@ function PrizeList({
 
   return (
     <section className="prize-list">
-      <h2>🏆 당첨 상품 ({wins.length}개)</h2>
+      <div className="prize-header">
+        <h2>획득한 선물 ({wins.length}개)</h2>
+        <button className="btn-reset" onClick={onReset}>
+          초기화
+        </button>
+      </div>
 
-      {/* 상품별 획득 개수 */}
-      <ul className="prize-summary" aria-label="상품별 획득 개수">
-        {prizes.map((prize) => (
-          <li key={prize.id}>
-            <span>
-              {prize.emoji} {prize.name}
-            </span>
-            <strong>{counts[prize.id] || 0}개</strong>
-          </li>
-        ))}
-      </ul>
-
-      {/* 당첨 순서 목록 */}
       {wins.length === 0 ? (
-        <p className="empty">아직 당첨된 상품이 없습니다.</p>
+        <p className="empty">아직 획득한 선물이 없습니다.</p>
       ) : (
         <>
-          <p className="hint">🖱️ 더블클릭: 기록 삭제 / 우클릭: 상세 정보</p>
+          {/* 상품별 획득 개수 */}
+          <ul className="prize-summary" aria-label="상품별 획득 개수">
+            {prizes.map((prize) => (
+              <li key={prize.id}>
+                <span>
+                  {prize.emoji} {prize.name}
+                </span>
+                <strong>{counts[prize.id] || 0}개</strong>
+              </li>
+            ))}
+          </ul>
+
+          {/* 당첨 순서 목록 */}
           <ol className="win-list" aria-label="당첨 순서 목록">
             {wins.map((win, index) => {
               const prize = findPrize(win.prizeId);
@@ -56,9 +61,8 @@ function PrizeList({
                   onContextMenu={(e) => handleContextMenu(e, prize)}
                 >
                   <span className="win-order">{index + 1}</span>
-                  <span>
-                    {prize.emoji} {prize.name}
-                  </span>
+                  <span className="win-emoji">{prize.emoji}</span>
+                  <span>{prize.name}</span>
                 </li>
               );
             })}

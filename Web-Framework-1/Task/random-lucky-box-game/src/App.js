@@ -11,7 +11,7 @@ import {
   PRIZES,
 } from "./prizes";
 
-const START_MESSAGE = "럭키박스를 열어 상품을 받아보세요!";
+const START_MESSAGE = "럭키박스를 열어 행운을 확인하세요!";
 
 function App() {
   // State 선언
@@ -84,6 +84,7 @@ function App() {
   return (
     <div className="container">
       <h1>🎁 랜덤 럭키박스 게임</h1>
+      <p className="subtitle">상자를 열고 특별한 선물을 획득하세요!</p>
 
       <PointBoard
         nickname={nickname}
@@ -107,11 +108,10 @@ function App() {
         onDelete={deleteWin}
         onShowDetail={showDetail}
         onCloseDetail={closeDetail}
+        onReset={resetGame}
       />
 
-      <button className="btn-reset" onClick={resetGame}>
-        🔄 초기화
-      </button>
+      <p className="hint">상품 더블클릭: 삭제 / 마우스 오른쪽 클릭: 상세 정보</p>
     </div>
   );
 }

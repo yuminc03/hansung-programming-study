@@ -28,7 +28,7 @@ test("처음에는 1,000P이고 당첨 상품이 없다", () => {
   expect(screen.getByText("1,000P")).toBeInTheDocument();
   expect(screen.getByText("0회")).toBeInTheDocument();
   expect(screen.getByPlaceholderText("이름 입력")).toHaveValue(DEFAULT_NICKNAME);
-  expect(screen.getByText("아직 당첨된 상품이 없습니다.")).toBeInTheDocument();
+  expect(screen.getByText("아직 획득한 선물이 없습니다.")).toBeInTheDocument();
 });
 
 test("박스를 열면 200P가 차감되고 당첨 상품이 목록에 추가된다", () => {
@@ -119,7 +119,7 @@ test("초기화하면 닉네임은 '럭키학생', 포인트, 목록, 결과, �
   expect(input).toHaveValue(RESET_NICKNAME);
   expect(screen.getByText("1,000P")).toBeInTheDocument();
   expect(screen.getByText("0회")).toBeInTheDocument();
-  expect(screen.getByText("아직 당첨된 상품이 없습니다.")).toBeInTheDocument();
+  expect(screen.getByText("아직 획득한 선물이 없습니다.")).toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "닫기" })).not.toBeInTheDocument();
   expect(getOpenButton()).toBeEnabled();
 });

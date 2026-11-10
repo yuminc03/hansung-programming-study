@@ -3,7 +3,7 @@ function PointBoard({ nickname, onNicknameChange, points, openCount }) {
   return (
     <section className="point-board">
       <label className="nickname">
-        <span>👤 닉네임</span>
+        <span>닉네임</span>
         <input
           type="text"
           value={nickname}
@@ -12,15 +12,14 @@ function PointBoard({ nickname, onNicknameChange, points, openCount }) {
         />
       </label>
 
-      <div className="stats">
-        <div className="stat">
-          <span className="stat-label">💰 보유 포인트</span>
-          <strong className="stat-value">{points.toLocaleString()}P</strong>
-        </div>
-        <div className="stat">
-          <span className="stat-label">📦 박스 이용 횟수</span>
-          <strong className="stat-value">{openCount}회</strong>
-        </div>
+      <div className="point-info">
+        <p>
+          <strong>{nickname || "이름 없음"}</strong>님의 보유 포인트:{" "}
+          <strong>{points.toLocaleString()}P</strong>
+        </p>
+        <p className="open-count">
+          박스 이용 횟수: <strong>{openCount}회</strong>
+        </p>
       </div>
     </section>
   );
