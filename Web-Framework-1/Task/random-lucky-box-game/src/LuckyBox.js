@@ -42,6 +42,7 @@ function LuckyBox({ points, cost, prizes, lastResult, message, onOpen }) {
               <span className="lineup-emoji">{prize.emoji}</span>
               <span className="lineup-name">{prize.name}</span>
               <span className="lineup-chance">{prize.chance}%</span>
+              <span className="lineup-reward">+{prize.reward}P</span>
             </li>
           ))}
         </ul>

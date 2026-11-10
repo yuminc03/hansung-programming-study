@@ -209,6 +209,12 @@ button:active:not(:disabled) {
   font-weight: bold;
 }
 
+.lineup-reward {
+  color: #d64566;
+  font-size: 13px;
+  font-weight: bold;
+}
+
 /* ===== PrizeList ===== */
 .prize-header {
   display: flex;

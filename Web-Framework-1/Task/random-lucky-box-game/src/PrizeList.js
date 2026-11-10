@@ -64,6 +64,7 @@ function PrizeList({
           <p>{selectedPrize.description}</p>
           <p>상품 가치: {selectedPrize.value.toLocaleString()}원</p>
           <p>당첨 확률: {selectedPrize.chance}%</p>
+          <p>당첨 포인트: +{selectedPrize.reward}P</p>
           <p>보유 개수: {countPrize(selectedPrize.id)}개</p>
           <button className="btn-close" onClick={onCloseDetail}>
             닫기

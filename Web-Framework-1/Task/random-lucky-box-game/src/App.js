@@ -66,11 +66,14 @@ function App() {
     const record = { recordId: nextRecordId.current, prize: prize };
     nextRecordId.current += 1;
 
-    setPoints((prev) => prev - BOX_COST);
+    // 박스 비용을 빼고, 당첨된 상품의 포인트를 지급
+    setPoints((prev) => prev - BOX_COST + prize.reward);
     setWins((prev) => [...prev, record]);
     setLastResult(prize);
     setOpenCount((prev) => prev + 1);
-    setMessage(`🎉 축하합니다! ${prize.emoji} ${prize.name} 당첨!`);
+    setMessage(
+      `🎉 축하합니다! ${prize.emoji} ${prize.name} 당첨! (+${prize.reward}P 적립)`
+    );
   }
 
   // 당첨 기록 삭제 (사용한 포인트는 반환하지 않음)
