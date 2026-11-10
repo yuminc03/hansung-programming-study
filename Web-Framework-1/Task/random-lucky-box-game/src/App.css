@@ -87,15 +87,48 @@ button:active:not(:disabled) {
   border-color: #6851a1;
 }
 
-.point-info {
+/* 보유 포인트 / 박스 이용 횟수 카드 */
+.stat-cards {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
-.open-count {
+.stat-card {
+  padding: 14px 18px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(104, 81, 161, 0.08);
+}
+
+/* 보유 포인트는 가장 중요한 정보라 더 넓게 */
+.point-card {
+  flex: 2;
+  border-left: 5px solid #6851a1;
+}
+
+.count-card {
+  flex: 1;
+  border-left: 5px solid #f4b7d0;
+}
+
+.stat-label {
+  margin-bottom: 6px;
   color: #796b8e;
+  font-size: 14px;
+}
+
+.stat-label strong {
+  color: #44365b;
+}
+
+.stat-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #6851a1;
+}
+
+.count-card .stat-value {
+  color: #a15b86;
 }
 
 /* ===== LuckyBox ===== */

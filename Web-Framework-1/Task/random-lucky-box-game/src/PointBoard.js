@@ -17,13 +17,19 @@ function PointBoard({ nickname, onNicknameChange, points, openCount }) {
         />
       </label>
 
-      <div className="point-info">
-        <p>
-          <strong>{displayName}</strong>님의 보유 포인트: <strong>{points.toLocaleString()}P</strong>
-        </p>
-        <p className="open-count">
-          박스 이용 횟수: <strong>{openCount}회</strong>
-        </p>
+      {/* 보유 포인트와 박스 이용 횟수를 카드 형태로 크게 표시 */}
+      <div className="stat-cards">
+        <div className="stat-card point-card">
+          <p className="stat-label">
+            💰 <strong>{displayName}</strong>님의 보유 포인트
+          </p>
+          <p className="stat-value">{points.toLocaleString()}P</p>
+        </div>
+
+        <div className="stat-card count-card">
+          <p className="stat-label">📦 박스 이용 횟수</p>
+          <p className="stat-value">{openCount}회</p>
+        </div>
       </div>
     </section>
   );
