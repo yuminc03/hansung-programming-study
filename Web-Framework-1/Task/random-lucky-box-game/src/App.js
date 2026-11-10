@@ -45,7 +45,7 @@ function App() {
 
     // 상품 4종 중 하나를 무작위로 선택 (각 25%)
     const prize = PRIZES[Math.floor(Math.random() * PRIZES.length)];
-    const record = { recordId: nextRecordId.current, prizeId: prize.id };
+    const record = { recordId: nextRecordId.current, prize: prize };
     nextRecordId.current += 1;
 
     setPoints((prev) => prev - BOX_COST);

@@ -8,21 +8,9 @@ function PrizeList({
   onCloseDetail,
   onReset,
 }) {
-  // 상품 id로 상품 정보 찾기
-  function findPrize(prizeId) {
-    return prizes.find((prize) => prize.id === prizeId);
-  }
-
-  // 상품별 획득 개수 계산
-  const counts = wins.reduce((acc, win) => {
-    acc[win.prizeId] = (acc[win.prizeId] || 0) + 1;
-    return acc;
-  }, {});
-
-  // 우클릭: 브라우저 기본 메뉴 대신 상세 정보 표시
-  function handleContextMenu(e, prize) {
-    e.preventDefault();
-    onShowDetail(prize);
+  // 상품별 획득 개수 계산 (같은 상품의 당첨 기록만 골라서 개수 세기)
+  function countPrize(prizeId) {
+    return wins.filter((win) => win.prize.id === prizeId).length;
   }
 
   return (
@@ -45,27 +33,24 @@ function PrizeList({
                 <span>
                   {prize.emoji} {prize.name}
                 </span>
-                <strong>{counts[prize.id] || 0}개</strong>
+                <strong>{countPrize(prize.id)}개</strong>
               </li>
             ))}
           </ul>
 
           {/* 당첨 순서 목록 */}
           <ol className="win-list" aria-label="당첨 순서 목록">
-            {wins.map((win, index) => {
-              const prize = findPrize(win.prizeId);
-              return (
-                <li
-                  key={win.recordId}
-                  onDoubleClick={() => onDelete(win.recordId)}
-                  onContextMenu={(e) => handleContextMenu(e, prize)}
-                >
-                  <span className="win-order">{index + 1}</span>
-                  <span className="win-emoji">{prize.emoji}</span>
-                  <span>{prize.name}</span>
-                </li>
-              );
-            })}
+            {wins.map((win, index) => (
+              <li
+                key={win.recordId}
+                onDoubleClick={() => onDelete(win.recordId)}
+                onContextMenu={() => onShowDetail(win.prize)}
+              >
+                <span className="win-order">{index + 1}</span>
+                <span className="win-emoji">{win.prize.emoji}</span>
+                <span>{win.prize.name}</span>
+              </li>
+            ))}
           </ol>
         </>
       )}
@@ -79,7 +64,7 @@ function PrizeList({
           <p>{selectedPrize.description}</p>
           <p>상품 가치: {selectedPrize.value.toLocaleString()}원</p>
           <p>당첨 확률: {100 / prizes.length}%</p>
-          <p>보유 개수: {counts[selectedPrize.id] || 0}개</p>
+          <p>보유 개수: {countPrize(selectedPrize.id)}개</p>
           <button className="btn-close" onClick={onCloseDetail}>
             닫기
           </button>

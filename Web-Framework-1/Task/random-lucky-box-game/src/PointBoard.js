@@ -14,8 +14,8 @@ function PointBoard({ nickname, onNicknameChange, points, openCount }) {
 
       <div className="point-info">
         <p>
-          <strong>{nickname || "이름 없음"}</strong>님의 보유 포인트:{" "}
-          <strong>{points.toLocaleString()}P</strong>
+          <strong>{nickname === "" ? "이름 없음" : nickname}</strong>님의 보유
+          포인트: <strong>{points.toLocaleString()}P</strong>
         </p>
         <p className="open-count">
           박스 이용 횟수: <strong>{openCount}회</strong>
