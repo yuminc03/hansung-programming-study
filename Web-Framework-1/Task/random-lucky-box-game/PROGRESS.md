@@ -31,3 +31,10 @@
   - PrizeList: "획득한 선물 (N개)" 제목 옆에 하늘색 초기화 버튼을 두었다(초기화 버튼을 App에서 이 위치로 옮기고 `onReset` prop으로 전달). 빈 목록 문구는 "아직 획득한 선물이 없습니다."다. 당첨이 있으면 상품별 개수 태그와 번호 목록이 나온다.
   - 조작 안내 문구를 카드 맨 아래에 항상 표시한다.
 - Edge headless로 초기 화면, 3회 오픈 후 우클릭 상세, 5회 오픈 후 포인트 부족 화면을 캡처해서 예시 이미지와 비교했다. 테스트 7개 통과, 빌드 성공.
+- 수업 자료(`../react-수업내용/` 1~7주차 PDF, 슬라이드 이미지 포함)와 비교해서 코드를 정리했다. 기준: React 문법만 수업에서 배운 것으로 제한하고, HTML/CSS/JS는 안다고 본다.
+  - `index.js`: `React.StrictMode`와 `reportWebVitals`를 빼고 6주차 교재처럼 `root.render(<App />)`로 바꿨다. 쓰이지 않게 된 `reportWebVitals.js`를 삭제했다.
+  - `PointBoard.js`: JSX 띄어쓰기용 `{" "}`를 없애고 문장을 한 줄 흐름으로 정리했다.
+  - `PrizeList.js`: 오른쪽 클릭 시 `e.preventDefault()`를 쓰지 않기로 했다(사용자 결정). 그래서 상세 정보와 함께 브라우저 기본 메뉴도 뜬다.
+  - JavaScript 정리: 당첨 기록에 상품 객체를 그대로 저장해 `find()`를 없앴다. 상품별 개수는 `reduce` 대신 `filter().length`로 센다.
+  - 수업 범위 밖인 jest/Testing Library 자동 테스트(`App.test.js`, `setupTests.js`)를 삭제했다. 삭제 전 마지막으로 7개 테스트가 모두 통과하는 것을 확인했다.
+- 삭제 후에는 Edge headless로 시작 → 3회 오픈 → 우클릭 상세 → 더블클릭 삭제 → 포인트 소진 → 초기화를 차례로 실행해서 상태가 모두 맞는지 확인했다. `CI=true npm run build` 성공.
