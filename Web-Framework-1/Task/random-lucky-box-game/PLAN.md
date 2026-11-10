@@ -63,7 +63,7 @@ src/
 | `openBox()` | 포인트 확인 → 무작위 당첨 → 200P 차감, 목록 추가, 결과·횟수 갱신 | LuckyBox `onOpen` |
 | `deleteWin(recordId)` | 해당 기록 삭제 (포인트는 그대로) | PrizeList `onDelete` |
 | `showDetail(prize)` / `closeDetail()` | 상세 정보 열기/닫기 | PrizeList `onShowDetail` / `onCloseDetail` |
-| `resetGame()` | 모든 상태 초기화 | App의 초기화 버튼 |
+| `resetGame()` | 모든 상태 초기화 | PrizeList `onReset` (목록 제목 옆 초기화 버튼) |
 
 ## 5. 개발 단계
 
