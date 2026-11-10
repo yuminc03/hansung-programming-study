@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import PointBoard from "./PointBoard";
 import LuckyBox from "./LuckyBox";
@@ -43,11 +43,6 @@ function App() {
 
   // 당첨 기록마다 고유 번호 부여 (같은 상품이 여러 번 당첨돼도 구분)
   const nextRecordId = useRef(1);
-
-  // 포인트가 변경되면 브라우저 탭 제목 변경
-  useEffect(() => {
-    document.title = `럭키박스 | ${points.toLocaleString()}P`;
-  }, [points]);
 
   // 닉네임 입력
   function changeNickname(e) {
