@@ -1,5 +1,5 @@
 // 럭키박스 열기 및 당첨 결과 표시
-function LuckyBox({ points, cost, lastResult, message, onOpen }) {
+function LuckyBox({ points, cost, prizes, lastResult, message, onOpen }) {
   // 포인트가 박스 비용보다 적으면 열 수 없음
   const canOpen = points >= cost;
 
@@ -32,6 +32,20 @@ function LuckyBox({ points, cost, lastResult, message, onOpen }) {
           ⚠️ 포인트가 부족합니다! 박스를 열려면 {cost}P 이상 필요합니다.
         </p>
       )}
+
+      {/* 럭키박스에서 나올 수 있는 상품 4종과 당첨 확률 */}
+      <div className="prize-lineup">
+        <p className="lineup-title">이 상자에서 나올 수 있는 선물</p>
+        <ul>
+          {prizes.map((prize) => (
+            <li key={prize.id}>
+              <span className="lineup-emoji">{prize.emoji}</span>
+              <span className="lineup-name">{prize.name}</span>
+              <span className="lineup-chance">{prize.chance}%</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

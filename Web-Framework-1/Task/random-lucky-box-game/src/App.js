@@ -114,6 +114,7 @@ function App() {
       <LuckyBox
         points={points}
         cost={BOX_COST}
+        prizes={PRIZES}
         lastResult={lastResult}
         message={message}
         onOpen={openBox}
