@@ -74,11 +74,15 @@ function PrizeList({
               // 당첨 기록 한 줄
               // - key: 기록 고유 번호(recordId) → 같은 상품이 여러 번 있어도 구분됨
               // - onDoubleClick: 더블클릭하면 이 기록의 번호로 삭제 함수 실행
-              // - onContextMenu: 오른쪽 클릭하면 이 기록의 상품으로 상세 정보 함수 실행
+              // - onContextMenu: 오른쪽 클릭하면 브라우저 기본 메뉴를 막고(preventDefault),
+              //   이 기록의 상품으로 상세 정보 함수 실행
               <li
                 key={win.recordId}
                 onDoubleClick={() => onDelete(win.recordId)}
-                onContextMenu={() => onShowDetail(win.prize)}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  onShowDetail(win.prize);
+                }}
               >
                 {/* 당첨 순서 번호 (index는 0부터 시작하므로 1을 더함) */}
                 <span className="win-order">{index + 1}</span>

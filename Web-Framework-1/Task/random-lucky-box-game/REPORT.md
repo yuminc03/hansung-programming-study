@@ -172,10 +172,21 @@ function pickPrize() {
 
 **우클릭 상세 정보**
 
-- 기록 항목에 `onContextMenu`를 달아 `showDetail(win.prize)`를 호출합니다.
+- 기록 항목에 `onContextMenu`를 달아 `showDetail(win.prize)`를 호출합니다. React에는 `onRightClick` 같은 이름이 따로 없고, 마우스 오른쪽 클릭은 `onContextMenu`로 받습니다.
+- 이벤트 객체 `e`의 `e.preventDefault()`를 먼저 호출해서 브라우저 기본 우클릭 메뉴가 뜨지 않게 막습니다.
 - `selectedPrize`에 상품을 저장하면 `PrizeList` 아래에 상세 카드가 나타납니다. 카드에는 상품 이름, 설명, 상품 가치(쉼표 표시), 당첨 확률, 당첨 포인트, 현재 보유 개수가 나옵니다.
 - "닫기" 버튼을 누르면 `closeDetail`이 `selectedPrize`를 `null`로 바꾸어 카드를 숨깁니다.
-- 현재 구현은 `preventDefault()`를 쓰지 않아서, 상세 정보가 열릴 때 브라우저 기본 우클릭 메뉴도 함께 뜹니다.
+
+```jsx
+<li
+  key={win.recordId}
+  onDoubleClick={() => onDelete(win.recordId)}
+  onContextMenu={(e) => {
+    e.preventDefault(); // 브라우저 기본 우클릭 메뉴 막기
+    onShowDetail(win.prize);
+  }}
+>
+```
 
 ### 3.5 게임 초기화 (`resetGame`)
 
@@ -320,7 +331,7 @@ function pickPrize() {
 
 ### 5.4 우클릭으로 상세 정보 보기
 
-- 획득 목록의 항목을 마우스 오른쪽 버튼으로 클릭하면, 목록 아래에 상세 카드가 나타납니다.
+- 획득 목록의 항목을 마우스 오른쪽 버튼으로 클릭하면, 목록 아래에 상세 카드가 나타납니다. 브라우저 기본 우클릭 메뉴는 뜨지 않습니다.
 - 카드에는 상품 이름, 설명, 상품 가치, 당첨 확률, 당첨 포인트, 보유 개수가 나옵니다.
 - "닫기" 버튼을 누르면 카드가 사라집니다.
 
@@ -367,6 +378,7 @@ function pickPrize() {
 | Props                       | 모든 자식 컴포넌트                                      | 부모(App)가 값과 함수를 자식에게 전달                             |
 | 분할 대입 Props             | 모든 자식 컴포넌트                                      | 매개변수에서 필요한 Props만 꺼내 씀                               |
 | 이벤트 처리                 | `onChange`, `onClick`, `onDoubleClick`, `onContextMenu` | 입력, 박스 열기, 삭제, 상세 보기 처리                             |
+| `e.preventDefault()`        | `PrizeList.js`                                          | 우클릭 시 브라우저 기본 메뉴가 뜨지 않게 막음                     |
 | `map()` + `key`             | `LuckyBox.js`, `PrizeList.js`                           | 상품 카드와 당첨 기록 목록을 반복해서 그림                        |
 | 조건부 렌더링               | `LuckyBox.js`, `PrizeList.js`                           | 당첨 전후 화면, 기록 유무, 상세 카드, 경고 문구 표시              |
 | Fragment `<>...</>`         | `LuckyBox.js`, `PrizeList.js`                           | 불필요한 태그 없이 여러 요소를 묶음                               |
@@ -381,5 +393,4 @@ function pickPrize() {
 ## 7. 한계
 
 - **새로고침 시 초기화**: 게임 상태를 저장하지 않으므로 페이지를 새로고침하면 처음부터 다시 시작합니다.
-- **우클릭 메뉴 중복**: 상세 정보를 열 때 브라우저 기본 우클릭 메뉴도 함께 뜹니다.
 - **목록 번호 재정렬**: 번호를 배열 위치로 매기므로 삭제하면 뒤 번호가 앞으로 당겨집니다.
